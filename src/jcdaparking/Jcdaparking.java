@@ -5,9 +5,10 @@
  */
 package jcdaparking;
 
-import jcdaparking.controladores.Controlador;
-import jcdaparking.modelos.ModeloBD;
-import jcdaparking.vistas.Vista;
+import jcdaparking.controladores.ControladorHome;
+import jcdaparking.modelos.Conductor;
+import jcdaparking.modelos.Vehiculo;
+import jcdaparking.vistas.VistaHome;
 
 /**
  *
@@ -19,12 +20,15 @@ public class Jcdaparking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ModeloBD modelo = new ModeloBD();
-        Vista vista = new Vista();
-        vista.setVisible(true);
+       
+        VistaHome vistahome = new VistaHome();
+        vistahome.setVisible(true);
         
-        Controlador controlador= new Controlador(modelo, vista);
+        Vehiculo vehiculo = new Vehiculo();
+        Conductor conductor= new Conductor();
         
+        
+        ControladorHome controladorhome = new ControladorHome(vistahome,vehiculo,conductor);
     }
     
 }
