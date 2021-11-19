@@ -12,18 +12,18 @@ package jcdaparking.modelos;
 public class Vehiculo {
     
     private String placa;
-    private String fechaIngreso;
-    private String fechaSalida;
+    public String fechaIn;
+    public String fechaOut;
     private int valorPagar;
     private int idCedula;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String placa, String fechaIngreso, String fechaSalida, int valorPagar, int idCedula) {
+    public Vehiculo(String placa, String fechaIn, String fechaOut, int valorPagar, int idCedula) {
         this.placa = placa;
-        this.fechaIngreso = fechaIngreso;
-        this.fechaSalida = fechaSalida;
+        this.fechaIn = fechaIn;
+        this.fechaOut = fechaOut;
         this.valorPagar = valorPagar;
         this.idCedula = idCedula;
     }
@@ -36,20 +36,20 @@ public class Vehiculo {
         this.placa = placa;
     }
 
-    public String getFechaIngreso() {
-        return fechaIngreso;
+    public String getFechaIn() {
+        return fechaIn;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setFechaIn(String fechaIn) {
+        this.fechaIn = fechaIn;
     }
 
-    public String getFechaSalida() {
-        return fechaSalida;
+    public String getFechaOut() {
+        return fechaOut;
     }
 
-    public void setFechaSalida(String fechaSalida) {
-        this.fechaSalida = fechaSalida;
+    public void setFechaOut(String fechaOut) {
+        this.fechaOut = fechaOut;
     }
 
     public int getValorPagar() {

@@ -32,7 +32,7 @@ public class ControladorIngreso implements ActionListener {
         this.vistaingreso=vistaingreso;
         this.vehiculo=vehiculo;
         this.conductor=conductor;
-        vistaingreso.botonEntrar.addActionListener(this);
+        vistaingreso.botonRegistrar.addActionListener(this);
         
     }
 
@@ -45,13 +45,13 @@ public class ControladorIngreso implements ActionListener {
         
         conductor.setCedula(Integer.parseInt(vistaingreso.cajaCedula.getText()));
         conductor.setNombre(vistaingreso.cajaNombre.getText());
-        conductor.setTelefono(Integer.parseInt(vistaingreso.cajaTelefono.getText()));
-        conductor.setCelular(Integer.parseInt(vistaingreso.cajaCedula.getText()));
+        conductor.setTelefono(Integer.parseInt(vistaingreso.cajaFijo.getText()));
+        conductor.setCelular(Integer.parseInt(vistaingreso.cajaCelular.getText()));
         
         Date entrada = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fechaEntrada=formato.format(entrada);
-        vehiculo.setFechaIngreso(fechaEntrada);
+        vehiculo.setFechaIn(fechaEntrada);
         
         vehiculo.setPlaca(vistaingreso.cajaPlaca.getText());
         vehiculo.setValorPagar(0);

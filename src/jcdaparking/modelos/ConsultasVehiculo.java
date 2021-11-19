@@ -30,8 +30,8 @@ public class ConsultasVehiculo extends ModeloBD {
             consultaSQL=conexion.prepareStatement(query);
             
             consultaSQL.setString(1, vehiculo.getPlaca());
-            consultaSQL.setString(2, vehiculo.getFechaIngreso());
-            consultaSQL.setString(3, vehiculo.getFechaSalida());
+            consultaSQL.setString(2, vehiculo.getFechaIn());
+            consultaSQL.setString(3, vehiculo.getFechaOut());
             consultaSQL.setInt(4, vehiculo.getValorPagar());
             consultaSQL.setInt(5, vehiculo.getIdCedula());
             int resultado=consultaSQL.executeUpdate();
@@ -63,8 +63,8 @@ public class ConsultasVehiculo extends ModeloBD {
             
             if(resultadoSQL.next()){
                 vehiculo.setPlaca(resultadoSQL.getString("placa"));
-                vehiculo.setFechaIngreso(resultadoSQL.getString("fecha_ingreso"));
-                vehiculo.setFechaSalida(resultadoSQL.getString("fecha_salida"));
+                vehiculo.setFechaIn(resultadoSQL.getString("fecha_ingreso"));
+                vehiculo.setFechaOut(resultadoSQL.getString("fecha_salida"));
                 vehiculo.setValorPagar(resultadoSQL.getInt("valor_pagar"));
                 vehiculo.setIdCedula(resultadoSQL.getInt("id_cedula"));
                 return vehiculo;
@@ -85,7 +85,7 @@ public class ConsultasVehiculo extends ModeloBD {
         
         try{
             consultaSQL=conexion.prepareStatement(query);
-            consultaSQL.setString(1,vehiculo.getFechaSalida());
+            consultaSQL.setString(1,vehiculo.getFechaOut());
             consultaSQL.setString(2,vehiculo.getPlaca());
             int resultado=consultaSQL.executeUpdate();
             

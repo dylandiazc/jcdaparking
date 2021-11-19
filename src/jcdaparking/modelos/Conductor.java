@@ -14,15 +14,19 @@ public class Conductor {
     private String nombre;
     private int telefono;
     private int celular;
+    public String fechaIn;
+    public String fechaOut;
 
     public Conductor() {
     }
 
-    public Conductor(int cedula, String nombre, int telefono, int celular) {
+    public Conductor(int cedula, String nombre, int telefono, int celular, String fechaIn, String fechaOut) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.celular = celular;
+        this.fechaIn = fechaIn;
+        this.fechaOut = fechaOut;
     }
 
     public int getCedula() {
@@ -57,6 +61,21 @@ public class Conductor {
         this.celular = celular;
     }
     
+     public String getFechaIn() {
+        return fechaIn;
+    }
+
+    public void setFechaIn(String fechaIn) {
+        this.fechaIn = fechaIn;
+    }
+
+    public String getFechaOut() {
+        return fechaOut;
+    }
+
+    public void setFechaOut(String fechaOut) {
+        this.fechaOut = fechaOut;
+    }
     
     
 }
