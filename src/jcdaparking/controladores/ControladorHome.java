@@ -8,11 +8,13 @@ package jcdaparking.controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Action;
+import javax.swing.JOptionPane;
 import jcdaparking.modelos.Conductor;
 import jcdaparking.modelos.ConsultasVehiculo;
 import jcdaparking.modelos.Vehiculo;
 import jcdaparking.vistas.VistaHome;
 import jcdaparking.vistas.VistaIngreso;
+import jcdaparking.vistas.VistaSalida;
 
 /**
  *
@@ -29,27 +31,52 @@ public class ControladorHome implements ActionListener {
         this.vistahome=vistahome;
         this.vehiculo=vehiculo;
         this.conductor=conductor;
-        vistahome.botonIngresar.addActionListener(this);
+        vistahome.botonBuscar.addActionListener(this);
+        vistahome.botonSalida.addActionListener(this);
+        vistahome.botonIngreso.addActionListener(this);
+        
         
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        ConsultasVehiculo consultasVehiculo = new ConsultasVehiculo();
-        String placa=vistahome.cajaPlaca.getText();
+        VistaIngreso vistaingreso = new VistaIngreso();
+        VistaSalida vistasalida = new VistaSalida();
         
-        if(consultasVehiculo.buscarVehiculo(placa)!=null){
+        if(ae.getSource()==vistahome.botonSalida){    
+            vistahome.setVisible(false);
+            vistasalida.setVisible(true);
             
-        }else{
-            VistaIngreso vistaingreso = new VistaIngreso();
+            ControladorSalida controladorSalida = new ControladorSalida(vistasalida, vehiculo, conductor);
+            
+        }
+        
+        if(ae.getSource()==vistahome.botonIngreso){
+            vistahome.setVisible(false);
+            vistaingreso.setVisible(true);
+            
+            ControladorIngreso controladorIngreso = new ControladorIngreso(vistaingreso, vehiculo, conductor);
+        }
+        
+        if(ae.getSource()==vistahome.botonBuscar){
+           ConsultasVehiculo consultasVehiculo = new ConsultasVehiculo();
+            String placa=vistahome.cajaPlaca.getText();
+        
+            if(consultasVehiculo.buscarVehiculo(placa)!=null){
+            
+                vistahome.setVisible(false);
+                vistasalida.setVisible(true);
+            
+            ControladorSalida controladorSalida = new ControladorSalida(vistasalida, vehiculo, conductor);
+            }else{
+            
             vistahome.setVisible(false);
             vistaingreso.setVisible(true);
             
             ControladorIngreso controladoringreso = new ControladorIngreso(vistaingreso, vehiculo, conductor);
+        }    
         }
         
+        
     }
-    
-    
-    
 }
