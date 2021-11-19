@@ -50,11 +50,16 @@ public class ControladorSalida implements ActionListener {
         if(ae.getSource()==vistasalida.botonHome){    
             vistahome.setVisible(true);
             vistasalida.setVisible(false);
+            
+            ControladorHome controladorHome = new ControladorHome(vistahome, vehiculo, conductor);
+
         }
         
         if(ae.getSource()==vistasalida.botonIngreso){
             vistasalida.setVisible(false);
             vistaingreso.setVisible(true);
+            
+            ControladorIngreso controladorIngreso = new ControladorIngreso(vistaingreso, vehiculo, conductor);
         }
         
         if(ae.getSource()==vistasalida.botonSalir){

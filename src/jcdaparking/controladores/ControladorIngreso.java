@@ -16,6 +16,7 @@ import jcdaparking.modelos.ConsultasVehiculo;
 import jcdaparking.modelos.Vehiculo;
 import jcdaparking.vistas.VistaHome;
 import jcdaparking.vistas.VistaIngreso;
+import jcdaparking.vistas.VistaSalida;
 
 /**
  *
@@ -33,37 +34,64 @@ public class ControladorIngreso implements ActionListener {
         this.vehiculo=vehiculo;
         this.conductor=conductor;
         vistaingreso.botonRegistrar.addActionListener(this);
+        vistaingreso.botonHome.addActionListener(this);
+        vistaingreso.botonSalida.addActionListener(this);
         
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        ConsultasVehiculo consultasVehiculo = new ConsultasVehiculo();
         
-        ConsultasConductores consultasConductores = new ConsultasConductores();
+        VistaHome vistahome = new VistaHome();
+        VistaSalida vistasalida = new VistaSalida();
         
-        
-        conductor.setCedula(Integer.parseInt(vistaingreso.cajaCedula.getText()));
-        conductor.setNombre(vistaingreso.cajaNombre.getText());
-        conductor.setTelefono(Integer.parseInt(vistaingreso.cajaFijo.getText()));
-        conductor.setCelular(Integer.parseInt(vistaingreso.cajaCelular.getText()));
-        
-        Date entrada = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String fechaEntrada=formato.format(entrada);
-        vehiculo.setFechaIn(fechaEntrada);
-        
-        vehiculo.setPlaca(vistaingreso.cajaPlaca.getText());
-        vehiculo.setValorPagar(0);
-        vehiculo.setIdCedula(Integer.parseInt(vistaingreso.cajaCedula.getText()));
-        
-        if(consultasConductores.registrarConductor(conductor)&&consultasVehiculo.insertarVehiculo(vehiculo)){
+        if(ae.getSource()==vistaingreso.botonSalida){    
+            vistaingreso.setVisible(false);
+            vistasalida.setVisible(true);
             
-            JOptionPane.showMessageDialog(null, "Éxito ingresando vehículo");
-        
-        }else{
-            JOptionPane.showMessageDialog(null, "Error ingresando vehículo");
+            ControladorSalida controladorSalida = new ControladorSalida(vistasalida, vehiculo, conductor);
+            
         }
+        
+        if(ae.getSource()==vistaingreso.botonHome){    
+            vistaingreso.setVisible(false);
+            vistahome.setVisible(true);
+            
+            ControladorHome controladorHome = new ControladorHome(vistahome, vehiculo, conductor);
+            
+        }
+        
+        if(ae.getSource()==vistaingreso.botonRegistrar){    
+            
+                ConsultasVehiculo consultasVehiculo = new ConsultasVehiculo();
+                ConsultasConductores consultasConductores = new ConsultasConductores();
+
+
+                conductor.setCedula(Integer.parseInt(vistaingreso.cajaCedula.getText()));
+                conductor.setNombre(vistaingreso.cajaNombre.getText());
+                conductor.setTelefono(Integer.parseInt(vistaingreso.cajaFijo.getText()));
+                conductor.setCelular(Integer.parseInt(vistaingreso.cajaCelular.getText()));
+
+                Date entrada = new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String fechaEntrada=formato.format(entrada);
+                vehiculo.setFechaIn(fechaEntrada);
+
+                vehiculo.setPlaca(vistaingreso.cajaPlaca.getText());
+                vehiculo.setValorPagar(0);
+                vehiculo.setIdCedula(Integer.parseInt(vistaingreso.cajaCedula.getText()));
+
+                if(consultasConductores.registrarConductor(conductor)&&consultasVehiculo.insertarVehiculo(vehiculo)){
+
+                    JOptionPane.showMessageDialog(null, "Éxito ingresando vehículo");
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error ingresando vehículo");
+                }
+            
+        }
+        
+        
         
     }
     
